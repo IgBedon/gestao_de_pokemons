@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "BT5UlAeQfyxvyMvty2+4Q38/4k7DnDmiFwD3AdzVh8Bm0rwA2/pzisSPLCIJVMvXJA5Jy2IrI98QNpnCvjbfDw==",
+  "success": true,
+  "projectFilePath": "C:\\prog\\AreaDeTestes\\AreaDeTestes.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\igorb\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

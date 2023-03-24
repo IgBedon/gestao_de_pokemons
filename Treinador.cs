@@ -4,9 +4,10 @@ namespace AreaDeTestes
 {
     public class Treinador
     {
-        public static string nomeTreinador;
+        public string nome;
+        public List<Pokemon> ListaDePokemonsEquipe = new List<Pokemon>();
 
-        public void AdicionarPokemonsEquipe(List<Pokemon> ListaDePokemonsEquipe, List<Pokemon> ListaDePokemonsPokedex)
+        public void AdicionarPokemonsEquipe(List<Pokemon> ListaDePokemonsEquipe, List<Pokemon> ListaDePokemonsPokedex, string nomeTreinador)
         {   
             if(ListaDePokemonsEquipe != null)
             {
@@ -25,11 +26,11 @@ namespace AreaDeTestes
                 Console.WriteLine("Adição Realizada!");
                 Console.WriteLine("=======================================");
 
-                Salvar(ListaDePokemonsEquipe);
+                Salvar(ListaDePokemonsEquipe, nomeTreinador);
                 ListarEquipe(ListaDePokemonsEquipe);
             }
         }
-        public void RemoverPokemonsEquipe(List<Pokemon> ListaDePokemonsEquipe)
+        public void RemoverPokemonsEquipe(List<Pokemon> ListaDePokemonsEquipe, string nomeTreinador)
         {
             ListarEquipe(ListaDePokemonsEquipe);
             Console.WriteLine("Quantos pokemons deseja remover da sua equipe?");
@@ -41,14 +42,8 @@ namespace AreaDeTestes
             }
             Console.WriteLine("Remoção Concluída!");
             Console.WriteLine("=======================================");
-            Salvar(ListaDePokemonsEquipe);
+            Salvar(ListaDePokemonsEquipe, nomeTreinador);
             ListarEquipe(ListaDePokemonsEquipe);
-        }
-
-        public static void Salvar(List<Pokemon> equipePokemon)
-        {
-            string jsonLista = JsonConvert.SerializeObject(equipePokemon);
-            File.WriteAllText("EquipePokemon.json", jsonLista);
         }
 
         public void ListarEquipe(List<Pokemon> equipe)
@@ -66,6 +61,42 @@ namespace AreaDeTestes
                     Console.WriteLine(id);
                     pokemonEquipe.ImprimirInformacoes();
                     id++;
+                }
+            }
+        }
+
+        public static void Salvar(List<Pokemon> equipePokemon, string nomeTreinador)
+        {
+            string jsonLista = JsonConvert.SerializeObject(equipePokemon);
+            File.WriteAllText("EquipePokemon"+ nomeTreinador +".json", jsonLista);
+        }
+
+        public List<Pokemon>? CarregarEquipe(string nomeTreinador)
+        {
+            using(FileStream stream = new FileStream("EquipePokemon" + nomeTreinador + ".json", FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                using(StreamReader sr = new StreamReader(stream))
+                {
+                    try
+                    {
+                        string conteudo = sr.ReadToEnd();
+
+                        if (conteudo == null)
+                        {
+                            List<Pokemon> ListaDePokemonsEquipe = new List<Pokemon>();
+                            return ListaDePokemonsEquipe;
+                        }
+                        else
+                        {
+                            ListaDePokemonsEquipe = JsonConvert.DeserializeObject<List<Pokemon>>(conteudo);
+                            return ListaDePokemonsEquipe;
+                        }
+                    } 
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Erro ao carregar Equipe: {e.Message}");
+                        return null;
+                    }
                 }
             }
         }

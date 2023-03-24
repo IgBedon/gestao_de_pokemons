@@ -75,12 +75,6 @@ namespace AreaDeTestes
             ListarPokedex(ListaDePokemons);
         }
 
-        public static void Salvar(List<Pokemon> ListaDePokemons)
-        {
-            string jsonLista = JsonConvert.SerializeObject(ListaDePokemons);
-            File.WriteAllText("Pokedex.json", jsonLista);
-        }
-
         public static void ListarPokedex(List<Pokemon> ListaDePokemons)
         {
             if(ListaDePokemons.Count == 0)
@@ -96,6 +90,42 @@ namespace AreaDeTestes
                     Console.WriteLine(id);
                     pokemon.ImprimirInformacoes();
                     id++;
+                }
+            }
+        }
+
+        public static void Salvar(List<Pokemon> ListaDePokemons)
+        {
+            string jsonLista = JsonConvert.SerializeObject(ListaDePokemons);
+            File.WriteAllText("Pokedex.json", jsonLista);
+        }
+
+        public static List<Pokemon>? CarregarPokedex()
+        {
+            using(FileStream stream = new FileStream("Pokedex.json", FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                using(StreamReader sr = new StreamReader(stream))
+                {
+                    try
+                    {
+                        string conteudo = sr.ReadToEnd();
+
+                        if (conteudo == null)
+                        {
+                            List<Pokemon> ListaDePokemon = new List<Pokemon>();
+                            return ListaDePokemon;
+                        }
+                        else
+                        {
+                            List<Pokemon> ListaDePokemon = JsonConvert.DeserializeObject<List<Pokemon>>(conteudo);
+                            return ListaDePokemon;
+                        }
+                    } 
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Erro ao carregar Pokedex: {e.Message}");
+                        return null;
+                    }
                 }
             }
         }

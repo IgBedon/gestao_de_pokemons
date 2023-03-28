@@ -9,14 +9,14 @@ namespace AreaDeTestes
         enum OpcaoEquipe {Adicionar=1, Remover, Listar, Sair}
         static void Main(string[] args)
         {   
-            var ListaInicialPokedex = Pokemon.CarregarPokedex() ?? new List<Pokemon>();
+            var ListaInicialPokedex = Carregamento.CarregarPokedex() ?? new List<Pokemon>();
 
             var treinador = new Treinador();
             Console.WriteLine("Qual é o seu nome, Treinador?");
             treinador.nome = Console.ReadLine();
             Console.WriteLine($"Seja bem-vindo, {treinador.nome}");
 
-            var ListaInicialEquipe = treinador.CarregarEquipe(treinador.nome) ?? new List<Pokemon>();
+            var ListaInicialEquipe = Carregamento.CarregarEquipe(treinador.nome) ?? new List<Pokemon>();
                 
             bool escolheuSair = false;
             while(!escolheuSair)
@@ -30,11 +30,11 @@ namespace AreaDeTestes
 
                     switch(opcaoEscolhida)
                     {
-                        case OpcaoPokedex.Adicionar: Pokemon.AdicionarPokemons(ListaInicialPokedex); 
+                        case OpcaoPokedex.Adicionar: Pokedex.AdicionarPokemons(ListaInicialPokedex); 
                             break;
-                        case OpcaoPokedex.Remover: Pokemon.RemoverPokemons(ListaInicialPokedex);
+                        case OpcaoPokedex.Remover: Pokedex.RemoverPokemons(ListaInicialPokedex);
                             break;
-                        case OpcaoPokedex.Listar: Pokemon.ListarPokedex(ListaInicialPokedex);
+                        case OpcaoPokedex.Listar: Pokedex.ListarPokedex(ListaInicialPokedex);
                             break;
                         case OpcaoPokedex.Sair: escolheuSair = true;
                             break;
@@ -46,7 +46,7 @@ namespace AreaDeTestes
                     OpcaoEquipe opcaoEscolhida = (OpcaoEquipe)int.Parse(Console.ReadLine());
                     switch(opcaoEscolhida)
                     {
-                        case OpcaoEquipe.Adicionar: treinador.AdicionarPokemonsEquipe(ListaInicialEquipe, ListaInicialPokedex, treinador.nome); 
+                        case OpcaoEquipe.Adicionar: treinador.AdicionarPokemons(ListaInicialPokedex, ListaInicialEquipe, treinador.nome); 
                             break;
                         case OpcaoEquipe.Remover: treinador.RemoverPokemonsEquipe(ListaInicialEquipe, treinador.nome);
                             break;

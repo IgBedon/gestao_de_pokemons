@@ -8,6 +8,7 @@ namespace AreaDeTestes
         public int Vida {get ; set;}
         public double Experiencia {get ; set;}
 
+        public Pokemon(){}
         public Pokemon(string nome, string tipo, int nivel, int vida, double experiencia)
         {
             this.Nome = nome;
@@ -15,15 +16,6 @@ namespace AreaDeTestes
             this.Nivel = nivel;
             this.Vida = vida;
             this.Experiencia = experiencia;
-        }
-
-        public void ImprimirInformacoes()
-        {
-            Console.WriteLine($"Nome: {Nome}");
-            Console.WriteLine($"Tipo: {Tipo}");
-            Console.WriteLine($"Nível: {Nivel}");
-            Console.WriteLine($"Pontos de vida: {Vida}");
-            Console.WriteLine($"Pontos de experiência: {Experiencia} \n");
         }
     }
 }

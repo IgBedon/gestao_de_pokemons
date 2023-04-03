@@ -2,8 +2,10 @@ namespace AreaDeTestes
 {
     public class ListagemDePokemons
     {
-        public static void ListarPokedex(List<Pokemon> listaPokedex)
+        public static void ListarPokedex()
         {
+            Exibicao InfoPokemon = new Exibicao();
+            List<Pokemon> listaPokedex = Pokedex.ListarPokedex();
             if(listaPokedex.Count == 0)
             {
                 Console.WriteLine("A Pokedex está vazia!");
@@ -15,14 +17,16 @@ namespace AreaDeTestes
                 foreach(Pokemon pokemon in listaPokedex)
                 {
                     Console.WriteLine(id);
-                    pokemon.ImprimirInformacoes();
+                    InfoPokemon.ImprimirInformacoesPokemon(pokemon);
                     id++;
                 }
             }
         }
 
-        public static void ListarEquipe(List<Pokemon> listaEquipe)
+        public static void ListarEquipeTreinador(List<Pokemon> listaInicialEquipe)
         {
+            Exibicao InfoPokemon = new Exibicao();
+            List<Pokemon> listaEquipe = Treinador.ListarEquipe(listaInicialEquipe);
             if(listaEquipe.Count == 0)
             {
                 Console.WriteLine("Equipe está vazia!");
@@ -34,7 +38,7 @@ namespace AreaDeTestes
                 foreach(Pokemon pokemonEquipe in listaEquipe)
                 {
                     Console.WriteLine(id);
-                    pokemonEquipe.ImprimirInformacoes();
+                    InfoPokemon.ImprimirInformacoesPokemon(pokemonEquipe);
                     id++;
                 }
             }

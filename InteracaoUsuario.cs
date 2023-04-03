@@ -2,7 +2,7 @@ namespace AreaDeTestes
 {
     public class InteracaoUsuario
     {
-        public static List<Pokemon> AdicionarPokemonsPokedex(List<Pokemon> listaPokedex)
+        public static List<Pokemon> InserirDadosPokemonsPokedex(List<Pokemon> listaPokedex)
         {   
             Console.WriteLine("Quantos pokemons deseja adicionar?");
             int[] quantidade = new int[int.Parse(Console.ReadLine())];
@@ -27,24 +27,32 @@ namespace AreaDeTestes
             return listaPokedex;
         }
 
-        public static List<Pokemon> AdicionarPokemonsEquipe(List<Pokemon> listaEquipe, List<Pokemon> listaPokedex)
+        public static List<Pokemon> InserirIndiceAdicaoEquipe(List<Pokemon> listaEquipe, List<Pokemon> listaPokedex)
         {
             Console.WriteLine("Quantos pokemons deseja adicionar na sua equipe?");
             int[] quantidade = new int[int.Parse(Console.ReadLine())];
             for(int i=0; i<quantidade.Length; i++)
             {
-                Console.WriteLine($"Insira o índice do {i+1}° Pokemon que deseja adicionar:");
-                int indicePokemon = int.Parse(Console.ReadLine());
-                listaEquipe.Add(listaPokedex[indicePokemon]);
+                if(listaEquipe.Count<7)
+                {
+                    Console.WriteLine($"Insira o índice do {i+1}° Pokemon que deseja adicionar:");
+                    int indicePokemon = int.Parse(Console.ReadLine());
+                    listaEquipe = Treinador.AdicionarPokemonEquipe(listaPokedex ,indicePokemon);
 
-                Console.WriteLine("Adição Realizada!");
-                Console.WriteLine("=======================================");
+                    Console.WriteLine("Adição Realizada!");
+                    Console.WriteLine("=======================================");
+                }
+                else
+                {
+                    Console.WriteLine("Não há mais espaço na sua equipe");
+                    return listaEquipe;
+                }
             }
 
             return listaEquipe;
         }
 
-        public static List<Pokemon> RemoverPokemonsPokedex(List<Pokemon> listaPokedex)
+        public static List<Pokemon> InserirIndiceRemocaoPokedex(List<Pokemon> listaPokedex)
         {
             Console.WriteLine("Quantos pokemons deseja remover?");
             int[] quantidade = new int[int.Parse(Console.ReadLine())];
@@ -59,14 +67,15 @@ namespace AreaDeTestes
             return listaPokedex;
         }
 
-        public static List<Pokemon> RemoverPokemonsEquipe(List<Pokemon> listaEquipe)
+        public static List<Pokemon> InserirIndiceRemocaoEquipe(List<Pokemon> listaEquipe)
         {
             Console.WriteLine("Quantos pokemons deseja remover da sua equipe?");
             int[] quantidade = new int[int.Parse(Console.ReadLine())];
             for(int i=0; i<quantidade.Length; i++)
             {
                 Console.WriteLine($"Insira o índice do {i+1}° Pokemon que deseja remover");
-                listaEquipe.RemoveAt(int.Parse(Console.ReadLine())-i);
+                int indiceEscolhido = (int.Parse(Console.ReadLine())-i);
+                listaEquipe = Treinador.RemoverPokemonEquipe(indiceEscolhido);
                 
                 Console.WriteLine("Remoção Concluída!");
                 Console.WriteLine("=======================================");

@@ -30,11 +30,11 @@ namespace AreaDeTestes
 
                     switch(opcaoEscolhida)
                     {
-                        case OpcaoPokedex.Adicionar: Pokedex.AdicionarPokemons(ListaInicialPokedex); 
+                        case OpcaoPokedex.Adicionar: AdicaoDePokemons.AdicionarPokemonPokedex(ListaInicialPokedex); 
                             break;
-                        case OpcaoPokedex.Remover: Pokedex.RemoverPokemons(ListaInicialPokedex);
+                        case OpcaoPokedex.Remover: RemocaoDePokemon.RemoverPokemon(ListaInicialPokedex);
                             break;
-                        case OpcaoPokedex.Listar: Pokedex.ListarPokedex(ListaInicialPokedex);
+                        case OpcaoPokedex.Listar: ListagemDePokemons.ListarPokedex();
                             break;
                         case OpcaoPokedex.Sair: escolheuSair = true;
                             break;
@@ -46,11 +46,11 @@ namespace AreaDeTestes
                     OpcaoEquipe opcaoEscolhida = (OpcaoEquipe)int.Parse(Console.ReadLine());
                     switch(opcaoEscolhida)
                     {
-                        case OpcaoEquipe.Adicionar: treinador.AdicionarPokemons(ListaInicialPokedex, ListaInicialEquipe, treinador.nome); 
+                        case OpcaoEquipe.Adicionar: AdicaoDePokemons.AdicionarPokemonEquipe(ListaInicialPokedex, ListaInicialEquipe, treinador.nome); 
                             break;
-                        case OpcaoEquipe.Remover: treinador.RemoverPokemonsEquipe(ListaInicialEquipe, treinador.nome);
+                        case OpcaoEquipe.Remover: RemocaoDePokemon.RemoverPokemon(ListaInicialEquipe, treinador.nome);
                             break;
-                        case OpcaoEquipe.Listar: treinador.ListarEquipe(ListaInicialEquipe);
+                        case OpcaoEquipe.Listar: ListagemDePokemons.ListarEquipeTreinador(ListaInicialEquipe);
                             break;
                         case OpcaoEquipe.Sair: escolheuSair = true;
                             break;

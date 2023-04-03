@@ -2,21 +2,18 @@ namespace AreaDeTestes
 {
     public class AdicaoDePokemons
     {
-        public static void AdicionarPokemon(List<Pokemon> listaPokedex)
+        public static void AdicionarPokemonPokedex(List<Pokemon> listaPokedex)
         {
-            ListagemDePokemons.ListarPokedex(listaPokedex);
-            List<Pokemon> listaPokedexAtualizada = InteracaoUsuario.AdicionarPokemonsPokedex(listaPokedex);
-            Salvar.SalvarPokedex(listaPokedexAtualizada);
-            ListagemDePokemons.ListarPokedex(listaPokedexAtualizada);
+            List<Pokemon> listaPokedexAtualizada = InteracaoUsuario.InserirDadosPokemonsPokedex(listaPokedex);
+            List<Pokemon> pokedexAtualizada = Pokedex.AtualizarPokedex(listaPokedexAtualizada);
+            Salvar.SalvarPokedex(pokedexAtualizada);
         }
 
-        public static void AdicionarPokemon(List<Pokemon> listaPokedex, List<Pokemon> listaEquipe, string nomeTreinador)
+        public static void AdicionarPokemonEquipe(List<Pokemon> listaPokedex, List<Pokemon> listaEquipe, string nomeTreinador)
         {
-            ListagemDePokemons.ListarEquipe(listaPokedex);
-            List<Pokemon> listaEquipeAtualizada = InteracaoUsuario.AdicionarPokemonsEquipe(listaEquipe, listaPokedex);
-            Salvar.SalvarEquipe(listaEquipeAtualizada, nomeTreinador);
-            ListagemDePokemons.ListarEquipe(listaEquipeAtualizada);
-
+            ListagemDePokemons.ListarPokedex();
+            List<Pokemon> equipeAtualizada = InteracaoUsuario.InserirIndiceAdicaoEquipe(listaEquipe, listaPokedex);
+            Salvar.SalvarEquipe(equipeAtualizada, nomeTreinador);
         }
     }
 }

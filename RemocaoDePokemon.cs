@@ -4,19 +4,17 @@ namespace AreaDeTestes
     {
         public static void RemoverPokemon(List<Pokemon> listaPokedex)
         {
-            ListagemDePokemons.ListarPokedex(listaPokedex);
-            List<Pokemon> listaPokedexAtualizada = InteracaoUsuario.RemoverPokemonsPokedex(listaPokedex);
-            Salvar.SalvarPokedex(listaPokedexAtualizada);
-            ListagemDePokemons.ListarPokedex(listaPokedexAtualizada);
+            ListagemDePokemons.ListarPokedex();
+            List<Pokemon> listaPokedexAtualizada = InteracaoUsuario.InserirIndiceRemocaoPokedex(listaPokedex);
+            List<Pokemon> pokedexAtualizada = Pokedex.AtualizarPokedex(listaPokedexAtualizada); 
+            Salvar.SalvarPokedex(pokedexAtualizada);
         }
 
         public static void RemoverPokemon(List<Pokemon> listaEquipe, string nomeTreinador)
         {
-            ListagemDePokemons.ListarEquipe(listaEquipe);
-            List<Pokemon> listaEquipeAtualizada = InteracaoUsuario.RemoverPokemonsEquipe(listaEquipe);
+            ListagemDePokemons.ListarEquipeTreinador(listaEquipe);
+            List<Pokemon> listaEquipeAtualizada = InteracaoUsuario.InserirIndiceRemocaoEquipe(listaEquipe);
             Salvar.SalvarEquipe(listaEquipeAtualizada, nomeTreinador);
-            ListagemDePokemons.ListarEquipe(listaEquipeAtualizada);
-
         }
     }
 }

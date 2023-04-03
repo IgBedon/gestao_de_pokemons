@@ -2,19 +2,17 @@ namespace AreaDeTestes
 {
     public class Pokedex
     {
-        public static void AdicionarPokemons(List<Pokemon> listaPokedex)
+        private static List<Pokemon> pokedex = Carregamento.CarregarPokedex() ?? new List<Pokemon>();
+        
+        public static List<Pokemon> AtualizarPokedex(List<Pokemon> listaPokedexAtualizada)
         {   
-            AdicaoDePokemons.AdicionarPokemon(listaPokedex);
+            pokedex = listaPokedexAtualizada;
+            return pokedex;
         }
 
-        public static void RemoverPokemons(List<Pokemon> listaPokedex)
+        public static List<Pokemon> ListarPokedex()
         {
-            RemocaoDePokemon.RemoverPokemon(listaPokedex);
-        }
-
-        public static void ListarPokedex(List<Pokemon> listaPokedex)
-        {
-            ListagemDePokemons.ListarPokedex(listaPokedex);
+            return pokedex;
         }
     }
 }

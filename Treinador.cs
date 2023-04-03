@@ -3,21 +3,24 @@ namespace AreaDeTestes
     public class Treinador
     {
         public string nome;
-        public List<Pokemon> ListaDePokemonsEquipe = new List<Pokemon>();
+        private static List<Pokemon> listaDePokemonsEquipe;
 
-        public void AdicionarPokemons(List<Pokemon> listaPokedex, List<Pokemon> listaEquipe, string nomeTreinador)
+        public static List<Pokemon> AdicionarPokemonEquipe(List<Pokemon> pokedex, int indicePokemon)
         {   
-            AdicaoDePokemons.AdicionarPokemon(listaPokedex, listaEquipe, nomeTreinador);
+            listaDePokemonsEquipe.Add(pokedex[indicePokemon]);
+            return listaDePokemonsEquipe;
         }
 
-        public void RemoverPokemonsEquipe(List<Pokemon> listaEquipe, string nomeTreinador)
+        public static List<Pokemon> RemoverPokemonEquipe(int indicePokemon)
         {
-            RemocaoDePokemon.RemoverPokemon(listaEquipe, nomeTreinador);
+            listaDePokemonsEquipe.RemoveAt(indicePokemon);
+            return listaDePokemonsEquipe;
         }
 
-        public void ListarEquipe(List<Pokemon> listaEquipe)
+        public static List<Pokemon> ListarEquipe(List<Pokemon> listaInicialEquipe)
         {
-            ListagemDePokemons.ListarEquipe(listaEquipe);
+            listaDePokemonsEquipe = listaInicialEquipe;
+            return listaDePokemonsEquipe;
         }
         
     }
